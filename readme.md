@@ -1,6 +1,6 @@
 # Plexo Archive!
 
-This is the non official Plexo site, client, and studio archive! This was crated by Ham, but some things were graciously donated by Komodo.
+This is the non official Plexo videos, pictures, site, client, and studio archive! This was crated by Ham, but some things were graciously donated by Komodo.
 
 ## Notice
 
