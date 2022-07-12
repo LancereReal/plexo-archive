@@ -9,3 +9,6 @@ Not all of the dates will be 100% correct. I am just putting the dats I download
 ## Plexo Facts
 
 Plexo opened for open beta on July fifth, 2022. Before then, it had was being tested by the beta testers. When Plexo released for open beta, they all got tbc.
+
+## Plexo Site
+[Here](https://plexo.xyz) or [Here](https://plexxo.xyz)
