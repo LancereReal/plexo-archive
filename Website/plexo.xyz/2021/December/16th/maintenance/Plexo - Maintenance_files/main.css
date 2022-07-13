@@ -1,0 +1,39 @@
+.mainContent {
+	height: calc(100% - 58px);
+	width: calc(100% - 280px);
+	overflow: hidden;
+}
+
+#body {
+	min-height: 550px;
+	padding: 5px 0 25px 0;
+	margin: 0 auto;
+}
+
+.h1 {
+	font-family:'Source Sans Pro',Arial,Helvetica,sans-serif;
+	color:#343434;
+	font-size:14px;
+	line-height:1.428;
+}
+/*
+     FILE ARCHIVED ON 07:09:46 Dec 16, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:55:53 Jul 13, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 102.843
+  exclusion.robots: 0.108
+  exclusion.robots.policy: 0.099
+  RedisCDXSource: 9.05
+  esindex: 0.01
+  LoadShardBlock: 64.018 (3)
+  PetaboxLoader3.datanode: 77.068 (4)
+  CDXLines.iter: 25.642 (3)
+  load_resource: 84.479
+  PetaboxLoader3.resolve: 35.43
+*/

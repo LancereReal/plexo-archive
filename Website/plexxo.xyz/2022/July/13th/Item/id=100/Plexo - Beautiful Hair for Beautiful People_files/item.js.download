@@ -1,0 +1,95 @@
+// let's do a quick check
+
+const urlParams = new URLSearchParams(window.location.search);
+
+$.ajax({
+	contentType: "application/x-www-form-urlencoded; charset=utf-8",
+	type: 'POST',
+	url: 'api/Marketplace/playerOwnsItem.php',
+	data: {
+		itemid: urlParams.get('id')
+	},
+	success: function(r)
+	{
+		if(r.owned) {
+			document.getElementById("purchaseBtn").setAttribute('disabled', 'disabled');
+			document.getElementById("purchaseBtn").innerHTML = "Owned";
+		}
+	}
+});
+
+function reportButton(itemId) {
+	window.location = "/report?assetId=" + itemId.toString();
+	return false;
+}
+
+function purchaseItem(itemId) {
+	document.getElementById("prePurchaseModal").style.display = 'none';
+	document.getElementById("duringPurchase").style.display = 'block';
+	document.getElementById("modalFooter").style.display = 'none';
+	$('#itemConfirmationModal').modal({backdrop: 'static', keyboard: false})  
+	
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Marketplace/purchaseItem.php',
+		data: {
+			id: itemId
+		},
+		success: function(r)
+		{
+			if (r.success) {
+				document.getElementById("afterPurchaseModal").style.display = 'block';
+				// TODO: just use a variable in the JSON response for this
+				if(r.newBalance != "T$0" && r.newBalance != "P$0") {
+					document.getElementById("afterPurchaseConfirmMutedText").innerHTML = "Your balance is now " + r.newBalance + ".";
+				}
+				document.getElementById("duringPurchase").style.display = 'none';
+				document.getElementById("modalConfirm").classList.add('btn-primary');
+				document.getElementById("modalConfirm").classList.remove('btn-success');
+				document.getElementById("modalConfirm").removeAttribute('onclick');
+				document.getElementById("modalConfirm").setAttribute('data-bs-dismiss', 'modal');
+				document.getElementById("modalConfirm").innerHTML = "OK";
+				document.getElementById("modalCancel").remove();
+				document.getElementById("modalFooter").style.display = 'block';
+				document.getElementById("purchaseBtn").setAttribute('disabled', 'disabled');
+				document.getElementById("purchaseBtn").innerHTML = "Owned";
+			} else {
+				switch(r.error) {
+					case 0:
+						document.getElementById("afterPurchaseConfirmText").innerHTML = "You already own this item!";
+						document.getElementById("afterPurchaseConfirmMutedText").innerHTML = "Your balance was not changed during this transaction.";
+						document.getElementById("afterPurchaseModal").style.display = 'block';
+						document.getElementById("duringPurchase").style.display = 'none';
+						document.getElementById("modalConfirm").classList.add('btn-primary');
+						document.getElementById("modalConfirm").classList.remove('btn-success');
+						document.getElementById("modalConfirm").removeAttribute('onclick');
+						document.getElementById("modalConfirm").setAttribute('data-bs-dismiss', 'modal');
+						document.getElementById("modalConfirm").innerHTML = "OK";
+						document.getElementById("modalCancel").remove();
+						document.getElementById("modalFooter").style.display = 'block';
+						document.getElementById("purchaseBtn").setAttribute('disabled', 'disabled');
+						document.getElementById("purchaseBtn").innerHTML = "Owned";
+						break;
+					default:
+						document.getElementById("afterPurchaseConfirmText").innerHTML = "Error!";
+						document.getElementById("afterPurchaseConfirmMutedText").innerHTML = "An unexpected error occurred.";
+						document.getElementById("afterPurchaseModal").style.display = 'block';
+						document.getElementById("duringPurchase").style.display = 'none';
+						document.getElementById("modalConfirm").classList.add('btn-primary');
+						document.getElementById("modalConfirm").classList.remove('btn-success');
+						document.getElementById("modalConfirm").removeAttribute('onclick');
+						document.getElementById("modalConfirm").setAttribute('data-bs-dismiss', 'modal');
+						document.getElementById("modalConfirm").innerHTML = "OK";
+						document.getElementById("modalCancel").remove();
+						document.getElementById("modalFooter").style.display = 'block';
+						break;
+				}
+			}
+		},
+		error: function(r) {
+			
+		}
+	});
+	return false;
+}

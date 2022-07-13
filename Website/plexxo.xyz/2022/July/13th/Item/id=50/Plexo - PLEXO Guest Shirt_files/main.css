@@ -1,0 +1,128 @@
+.mainContent {
+	height: calc(100% - 58px);
+	width: calc(100% - 280px);
+	overflow: hidden;
+}
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+textarea {
+	resize: none;
+	min-height: 100px;
+	height: 150px;
+}
+
+#body {
+	min-height: calc(100vh - 100px);
+	padding: 5px 0 25px 0;
+	margin: 0 auto 100px;
+}
+
+footer {
+	height: 100px;
+	min-width: 100%;
+	width: 100%;
+}
+
+.h1 {
+	/*font-family: 'Source Sans Pro',Arial,Helvetica,sans-serif;*/
+	color: #343434;
+	font-size: 14px;
+	line-height: 1.428;
+}
+
+.gamename {
+	color: #343434;
+	word-wrap: break-word;
+	position: relative;
+	font-size: 32px;
+	line-height: 1.428;
+	padding: 75px 0 0 15px;
+}
+
+.gamethumb {
+	position: relative;
+	padding: 25px 0 0 15px;
+	margin: 0px;
+	float: left;
+	display: flex;
+}
+
+.generictext {
+	color: #343434;
+	word-wrap: break-word;
+	position: relative;
+	font-size: 18px;
+	line-height: 1.428;
+	width: 600px;
+	padding: 25px 0 0 20px;
+	float: left;
+}
+
+.genericbold {
+	color: #343434;
+	word-wrap: break-word;
+	position: relative;
+	font-size: 12px;
+	line-height: 1.428;
+	width: 600px;
+	padding: 0 0 0 20px;
+	float: left;
+	font-weight: bold;
+}
+
+.gametilegenericbold {
+	color: #343434;
+	word-wrap: break-word;
+	position: relative;
+	font-size: 12px;
+	line-height: 1.428;
+	width: auto;
+	font-weight: bold;
+	text-align: center;
+}
+
+.genericdividey {
+	margin-left: 15px;
+	margin-right: 15px;
+	
+	width: 1px;
+	border-left: 1px solid gray;
+	float: right;
+}
+
+hr {
+	margin-left: 15px;
+	margin-right: 15px;
+	
+	width: 100%;
+	height: 1px;
+	color: gray;
+	opacity: 1 !important; /* because bootstrap can't get enough of setting the opacity */
+	border-left: 1px solid gray;
+	float: right;
+}
+
+.btn-play {
+	width: calc(100% - 30px);
+}
+
+.btn-report {
+	width: calc(100% - 30px);
+}
+
+.btn-base {
+	width: calc(100% - 30px);
+}
+
+.gameinfo {
+	width: 250px;
+	float: right;
+}
+
+.collapsing {
+  transition: none !important;
+}

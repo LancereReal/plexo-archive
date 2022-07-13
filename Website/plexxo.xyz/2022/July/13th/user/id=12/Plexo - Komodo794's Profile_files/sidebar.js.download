@@ -1,0 +1,22 @@
+function toggleSidebar() {
+	sidebar = document.getElementById("navbarToggleExternalContent");
+	sidebar.style.display = sidebar.style.display == "none" ? "block" : "none";
+}
+
+console.log(`
+⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
+### ### ### #     #    #    ######  #     # ### #     #  #####  ### ### ### 
+### ### ### #  #  #   # #   #     # ##    #  #  ##    # #     # ### ### ### 
+### ### ### #  #  #  #   #  #     # # #   #  #  # #   # #       ### ### ### 
+ #   #   #  #  #  # #     # ######  #  #  #  #  #  #  # #  ####  #   #   #  
+            #  #  # ####### #   #   #   # #  #  #   # # #     #             
+### ### ### #  #  # #     # #    #  #    ##  #  #    ## #     # ### ### ### 
+### ### ###  ## ##  #     # #     # #     # ### #     #  #####  ### ### ###
+⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️ ⚠️
+
+WARNING: Do not copy/paste anything into this window.
+
+If you are being told that you can receive anything for free by pasting anything into this window, you are being scammed.
+If you fall for this, you will most likely lose your PLEXO account, including your Items, PLEX & TIX, etc.
+If somebody is claiming to be a PLEXO admin, they aren't. Simply report them and we'll suspend their account.
+`)

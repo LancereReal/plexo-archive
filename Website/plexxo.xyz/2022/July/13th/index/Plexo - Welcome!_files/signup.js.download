@@ -1,0 +1,123 @@
+
+function submitSignup(e) {
+	e = e || window.event;
+	e.preventDefault();
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LdOaOYcAAAAADYyz8f4zRjyQER3tc0rE3TQc6tb', {action: 'submit'}).then(function(token) {
+			var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+			// cutoff point!!!!!!
+			var username = document.getElementById('usernameInput').value;
+			var email = document.getElementById('emailInput').value;
+			var pass = document.getElementById('passwordInput').value;
+			var agreed = document.getElementById('agreeCheck').value;
+			var response = document.getElementById('recaptchaResponse').value;
+			var maleBtn = document.getElementById('maleRadio');
+			var femaleBtn = document.getElementById('femaleRadio');
+			var finalGender = "male";
+			if(femaleBtn.checked == true) {
+				finalGender = "female";
+			}
+			$.ajax({
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				type: 'POST',
+				url: 'api/Auth/signup.php',
+				data: {
+					usernameInput: username,
+					passwordInput: pass,
+					emailInput: email,
+					agreeCheck: agreed,
+					gender: finalGender,
+					recaptcha_response: response
+				},//"usernameInput=" + username + "&passwordInput=" + pass + "&emailInput=" + email + "&agreeCheck=" + agreed + "&recaptcha_response=" + response,
+				success: function(response)
+				{
+					// Sign up request was successfully sent!
+					if(!response.success) {
+						var message = response.message;
+						
+						document.getElementById("errorText").innerHTML = message;
+						document.getElementById("error").style.display = 'block';
+					} else {
+						window.location = "/verifyemail";
+					}
+				},
+				complete: function(response)
+				{
+					
+				},
+				error: function(r) {
+					//var err = JSON.parse(xhr.responseText);
+					//alert(xhr);
+					var message = r.errorMsg;
+
+					document.getElementById("errorText").innerHTML = message;
+					document.getElementById("error").style.display = 'block';
+				}
+			});
+			//document.signupForm.submit();
+		});
+	});
+	/*
+	var username = document.getElementById('usernameInput').value;
+	var email = document.getElementById('emailInput').value;
+	var pass = document.getElementById('passwordInput').value;
+	var agreed = document.getElementById('agreeCheck').value;
+	var response = document.getElementById('recaptchaResponse').value;
+	alert($(this).serialize());
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Auth/signup.php',
+		data: {
+			usernameInput: username,
+			passwordInput: pass,
+			emailInput: email,
+			agreeCheck: agreed,
+			recaptcha_response: response
+		},//"usernameInput=" + username + "&passwordInput=" + pass + "&emailInput=" + email + "&agreeCheck=" + agreed + "&recaptcha_response=" + response,
+		success: function(response)
+		{
+			alert("success");
+		},
+		complete: function(response)
+		{
+			alert("complete" + response);
+		},
+		error: function(xhr, status, error) {
+			//var err = JSON.parse(xhr.responseText);
+			alert(xhr);
+		}
+	});*/
+	return false;
+}
+
+/*
+$('.submitBtn').click(function(e) {
+	$('#signupForm').submit(function() {
+		grecaptcha.ready(function() {
+			grecaptcha.execute('6LdOaOYcAAAAADYyz8f4zRjyQER3tc0rE3TQc6tb', {action: 'submit'}).then(function(token) {
+				var recaptchaResponse = document.getElementById('recaptchaResponse');
+				recaptchaResponse.value = token;
+			});
+		});
+		$.ajax({
+			type: 'POST',
+			url: 'newsite/api/Auth/signup.php',
+			data: $(this).serialize(),
+			success: function(response)
+			{
+				alert("success");
+			},
+			complete: function(response)
+			{
+				alert("complete" + response);
+			},
+			error: function(e)
+			{
+				alert("error" + e);
+			}
+		});
+		return false;
+	})
+})*/

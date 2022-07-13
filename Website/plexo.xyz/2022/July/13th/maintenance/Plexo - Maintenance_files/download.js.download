@@ -1,0 +1,7 @@
+function downloadPlexo(zip) {
+	if(zip) {
+		window.open("https://plexo.xyz/PlexoStudio.zip", "_parent");
+	} else {
+		window.open("https://plexo.xyz/PlexoStudio.7z", "_parent");
+	}
+}

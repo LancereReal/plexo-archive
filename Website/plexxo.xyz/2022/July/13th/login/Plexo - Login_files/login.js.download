@@ -1,0 +1,81 @@
+function submitLogin(e) {
+	e = e || window.event;
+	e.preventDefault();
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LdOaOYcAAAAADYyz8f4zRjyQER3tc0rE3TQc6tb', {action: 'submit'}).then(function(token) {
+			var recaptchaResponse = document.getElementById('recaptchaResponse');
+            recaptchaResponse.value = token;
+			
+			var user = document.getElementById('usernameInput').value;
+			var pass = document.getElementById('passwordInput').value;
+			var response = document.getElementById('recaptchaResponse').value;
+			$.ajax({
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				type: 'POST',
+				url: 'api/Auth/login.php',
+				data: {
+					username: user,
+					passwordI: pass,
+					recaptcha_response: response
+				},
+				success: function(response)
+				{
+					var message = response.message;
+					
+					if (message == "Success") {
+						/*document.getElementById("successText").innerHTML = message;
+						document.getElementById("success").style.display = 'block';*/
+						window.location = "";
+					} else if(message == "You're already signed in!") {
+						window.location = "";
+					} else {
+						document.getElementById("errorText").innerHTML = message;
+						document.getElementById("error").style.display = 'block';
+						$('.success').fadeOut('500');
+					}
+				},
+				complete: function(response)
+				{
+					
+				},
+				error: function(r) {
+					var message = r.message;
+
+					document.getElementById("errorText").innerHTML = message;
+					document.getElementById("error").style.display = 'block';
+				}
+			});
+		});
+	});
+	return false;
+}
+
+/*
+$('.submitBtn').click(function(e) {
+	$('#signupForm').submit(function() {
+		grecaptcha.ready(function() {
+			grecaptcha.execute('6LdOaOYcAAAAADYyz8f4zRjyQER3tc0rE3TQc6tb', {action: 'submit'}).then(function(token) {
+				var recaptchaResponse = document.getElementById('recaptchaResponse');
+				recaptchaResponse.value = token;
+			});
+		});
+		$.ajax({
+			type: 'POST',
+			url: 'newsite/api/Auth/signup.php',
+			data: $(this).serialize(),
+			success: function(response)
+			{
+				alert("success");
+			},
+			complete: function(response)
+			{
+				alert("complete" + response);
+			},
+			error: function(e)
+			{
+				alert("error" + e);
+			}
+		});
+		return false;
+	})
+})*/

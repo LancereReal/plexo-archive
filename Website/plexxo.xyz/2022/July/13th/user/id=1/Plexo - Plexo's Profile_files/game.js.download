@@ -1,0 +1,86 @@
+var urlstr = document.URL;
+var url = new URL(urlstr);
+var placeid = url.searchParams.get("id");
+
+function reportButton(e) {
+	e = e || window.event;
+	e.preventDefault();
+	window.location = "/report?assetId=" + placeid.toString();
+	return false;
+}
+
+function configureGame(e) {
+	e = e || window.event;
+	e.preventDefault();
+	var urlstr = document.URL;
+	var url = new URL(urlstr);
+	var placeid = url.searchParams.get("id");
+	window.location = "/configure?id=" + placeid.toString();
+	return false;
+}
+
+function joinGame(gamePort) {
+	e = window.event;
+	e.preventDefault();
+	//var gamePort = document.getElementById('gamePort').value;
+	var plrTicket = document.getElementById('plrTicket').value;
+	//var uri = "plexo-player:// -play 'http://www.plexxo.xyz/game/sept2014/join.php?ip=localhost&port=" + gamePort + "&ticket=" + plrTicket + "' 'http://plexxo.xyz' '" + plrTicket + "'"//'plexo-player:// -play "http://www.plexxo.xyz/game/sept2014/join.php?ip=localhost&port=' + gamePort + "&ticket=" + plrTicket + ' "http://plexxo.xyz" "' + plrTicket + '"'//plexo-player:// -play \"http://www.plexxo.xyz/game/sept2014/join.php?ip=localhost&port=" + gamePort + "&ticket=" + plrTicket + " \"http://plexxo.xyz\" \"" + plrTicket + "\"";
+	//var urie = escape(uri);
+	//var urid = unescape(urie);
+	//var urid = decodeURI(uri);
+	var uri = encodeURIComponent("plexo-prelaunch14l:// -play \"http://www.plexxo.xyz/Game/Join?ip=26.236.116.66&port=" + gamePort + "&ticket=" + plrTicket + "&placeid=" + placeid.toString() + "\" \"http://www.plexxo.xyz/\" \"" + plrTicket + "\"");//"plexo-player:// -play \"http://www.plexxo.xyz/game/sept2014/join.php?ip=localhost&port=" + gamePort + "&ticket=" + plrTicket + "\" \"http://plexxo.xyz\" \"" + plrTicket + "\"";
+	console.log(uri);
+	console.log(unescape(decodeURIComponent(decodeURIComponent(uri))));
+	window.open(unescape(decodeURIComponent(decodeURIComponent(uri))), "_parent");
+	return false;
+}
+
+function downloadPlexo14L(e) {
+	e = e || window.event;
+	e.preventDefault();
+	window.open("http://setup.plexxo.xyz/Ple14L.exe", "_parent");
+}
+
+function startServer(e) {
+	// we do a check on the server, so just post the data
+	e = e || window.event;
+	e.preventDefault();
+	
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Server/RequestServer.php',
+		data: {
+			id: placeid
+		},
+		success: function(r)
+		{
+			var message = r.message;
+			
+			if (r.success) {
+				//window.location.reload(true);
+				var gamePort = r.port;
+				var plrTicket = document.getElementById('plrTicket').value;
+				
+				document.getElementById("successText").innerHTML = "Server launch was successful! Opening game...";
+				document.getElementById("success").style.display = 'block';
+				
+				var uri = encodeURIComponent("plexo-prelaunch14l:// -play \"http://www.plexxo.xyz/Game/Join?ip=26.236.116.66&port=" + gamePort + "&ticket=" + plrTicket + "&placeid=" + placeid.toString() + "\" \"http://www.plexxo.xyz/\" \"" + plrTicket + "\"");
+				window.open(unescape(decodeURIComponent(decodeURIComponent(uri))), "_parent");
+				
+				new bootstrap.Modal(document.getElementById("gameLaunchModal"), {}).show();
+				
+				//gameModal.show();
+			} else {
+				document.getElementById("errorText").innerHTML = message + " (Try waiting for a few seconds!)";
+				document.getElementById("error").style.display = 'block';
+			}
+		},
+		error: function(r) {
+			var message = r.message;
+
+			document.getElementById("errorText").innerHTML = message;
+			document.getElementById("error").style.display = 'block';
+		}
+	});
+}

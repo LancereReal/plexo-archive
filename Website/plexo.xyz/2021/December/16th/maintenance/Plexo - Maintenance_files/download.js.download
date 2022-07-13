@@ -1,0 +1,42 @@
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+function downloadPlexo(zip) {
+	if(zip) {
+		window.open("https://web.archive.org/web/20211216070947/https://plexo.xyz/PlexoStudio.zip", "_parent");
+	} else {
+		window.open("https://web.archive.org/web/20211216070947/https://plexo.xyz/PlexoStudio.7z", "_parent");
+	}
+}
+
+}
+/*
+     FILE ARCHIVED ON 07:09:47 Dec 16, 2021 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:55:53 Jul 13, 2022.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 120.348
+  exclusion.robots: 0.694
+  exclusion.robots.policy: 0.685
+  cdx.remote: 0.086
+  esindex: 0.009
+  LoadShardBlock: 82.754 (3)
+  PetaboxLoader3.datanode: 56.782 (4)
+  CDXLines.iter: 24.132 (3)
+  load_resource: 42.075
+  PetaboxLoader3.resolve: 27.438
+*/

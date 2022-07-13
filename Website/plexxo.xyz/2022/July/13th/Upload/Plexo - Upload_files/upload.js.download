@@ -1,0 +1,67 @@
+function confirmUploadSubmission(e) {
+	e.preventDefault();
+	return false;
+}
+
+function uploadPlace(e) {
+	e = e || window.event;
+	e.preventDefault();
+	var data = new FormData(document.getElementById("uploadForm"));
+	var xhr = new XMLHttpRequest();
+	xhr.responseType = "json";
+	xhr.open("POST", "http://plexxo.xyz/api/Places/CreatePlace.php");
+	xhr.send(data);
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			var response = xhr.response;
+			
+			if(!response.success) {
+				var message = response.message;
+				
+				document.getElementById("errorText").innerHTML = message;
+				document.getElementById("error").style.display = 'block';
+			} else if(response.success) {
+				var placeId = response.placeId;
+				
+				window.location = "/place?id=" + placeId;
+			}
+		}
+	}
+	
+	return false;
+}
+
+function configPlace(e) {
+	e = e || window.event;
+	e.preventDefault();
+	var data = new FormData(document.getElementById("uploadForm"));
+	var xhr = new XMLHttpRequest();
+	xhr.responseType = "json";
+	xhr.open("POST", "http://plexxo.xyz/api/Places/UpdatePlace.php");
+	xhr.send(data);
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			var response = xhr.response;
+			
+			if(!response.success) {
+				var message = response.message;
+				
+				document.getElementById("errorText").innerHTML = message;
+				document.getElementById("error").style.display = 'block';
+			} else if(response.success) {
+				var placeId = response.placeId;
+				
+				window.location = "/place?id=" + placeId;
+			}
+		}
+	}
+	
+	return false;
+}
+
+/*
+var uploadForm = document.getElementById("uploadForm");
+uploadForm.addEventListener('submit', confirmUploadSubmission);
+*/

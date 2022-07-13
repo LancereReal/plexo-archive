@@ -1,0 +1,86 @@
+function changeUsername() {
+	var usernameBoxText = document.getElementById('newUsernameInput').value;
+	
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Settings/changeUsername.php',
+		data: {
+			newUsername: usernameBoxText
+		},
+		success: function(r)
+		{
+			var message = r.message;
+			
+			if (message == "Success") {
+				document.getElementById("successText").innerHTML = "Changed username successfully!";
+				document.getElementById("success").style.display = 'block';
+			} else {
+				document.getElementById("errorText").innerHTML = message;
+				document.getElementById("error").style.display = 'block';
+			}
+		},
+		error: function(r) {
+			var message = r.message;
+
+			document.getElementById("errorText").innerHTML = message;
+			document.getElementById("error").style.display = 'block';
+		}
+	});
+}
+
+function changePassword() {
+	var oldPassText = document.getElementById('currentPassInput').value;
+	var newPassText = document.getElementById('newPassInput').value;
+	
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Settings/changePassword.php',
+		data: {
+			oldPassword: oldPassText,
+			newPassword: newPassText
+		},
+		success: function(r)
+		{
+			if (r.success) {
+				document.getElementById("successText").innerHTML = "Changed bio successfully!";
+				document.getElementById("success").style.display = 'block';
+			} else {
+				document.getElementById("errorText").innerHTML = r.message;
+				document.getElementById("error").style.display = 'block';
+			}
+		},
+		error: function(r) {
+			document.getElementById("errorText").innerHTML = r.message;
+			document.getElementById("error").style.display = 'block';
+		}
+	});
+}
+
+function changeBio() {
+	var bioBoxText = document.getElementById('newBioInput').value;
+	
+	$.ajax({
+		contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		type: 'POST',
+		url: 'api/Settings/changeBio.php',
+		data: {
+			bio: bioBoxText
+		},
+		success: function(r)
+		{
+			if (r.success) {
+				document.getElementById("successText").innerHTML = "Changed bio successfully!";
+				document.getElementById("success").style.display = 'block';
+			} else {
+				document.getElementById("errorText").innerHTML = r.message;
+				document.getElementById("error").style.display = 'block';
+			}
+		},
+		error: function(r) {
+			document.getElementById("errorText").innerHTML = r.message;
+			document.getElementById("error").style.display = 'block';
+		}
+	});
+}
