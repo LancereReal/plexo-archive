@@ -16,5 +16,9 @@ If you are trying to use the archived website, you must host it on localhost or 
 
 · Plexo opened for open beta on July fifth, 2022. Before then, it had was being tested by the beta testers. When Plexo released for open beta, all of the closed beta testers got tbc.
 
+· I play Plexo! Here are some of my screenshots:
+![alt text](https://raw.githubusercontent.com/LancereReal/plexo-archive/main/Pictures/Ham/July%2C%202022/RobloxScreenShot07102022_040136693.png)
+![alt text](https://raw.githubusercontent.com/LancereReal/plexo-archive/main/Pictures/Ham/July%2C%202022/RobloxScreenShot07102022_040917499.png)
+
 ## Plexo Site
 [Here](http://plexo.xyz) or [Here](http://plexxo.xyz)
