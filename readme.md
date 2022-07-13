@@ -6,6 +6,8 @@ This is the non official Plexo videos, pictures, site, client, and studio archiv
 
 Not all of the dates will be 100% correct. I am just putting the dats I downloaded them at.
 
+If you are trying to use the archived website, you must host it on localhost or an actual website. It will not work via file://.
+
 ## Plexo Facts
 
 · Plexo is a 2014 roblox revival owned and developed by pos0.
